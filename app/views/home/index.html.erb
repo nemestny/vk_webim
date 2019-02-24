@@ -1,2 +1,24 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<h1>Привет, <%= @user.first_name + ' ' + @user.last_name %>
+  <%= link_to 'Выйти', logout_path%>
+</h1>
+<table class="table">
+  <% if @friends.empty? %>
+    <tr>
+      <td>Друзей нет...</td>
+    </tr>
+  <% else %>
+    <% @friends.each do |friend| %>
+      <tr>
+        <td>
+          <%= link_to image_tag(friend.photo), "http://vk.com/#{friend.screen_name}", target: '_blank' %>
+        </td>
+        
+        <td class="wide">
+          <i class="icon-user"></i>
+          <%= link_to "#{friend.first_name} #{friend.last_name}", "http://vk.com/#{friend.screen_name}", target: '_blank' %><br />
+        </td>
+      </tr>
+    <% end %>
+  <% end %>
+</table>
+

@@ -11,15 +11,18 @@ class SessionsController < ApplicationController
       redirect_to root_path, alert: 'Ошибка входа'
     end
     
-    user = VkontakteApi.authorize(code: params[:code])
+    vk = VkontakteApi.authorize(code: params[:code])
 
-    session[:token] = user.token
-    session[:user_id] = user.user_id 
+    session[:token] = vk.token
+    session[:user_id] = vk.user_id 
 
     redirect_to root_path
   end
 
   def destroy
-    
+    session[:token] = nil
+    session[:user_id] = nil
+
+    redirect_to root_path
   end
 end

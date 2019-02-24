@@ -13,6 +13,8 @@ VkontakteApi.configure do |config|
   # Logging parameters:
   # log everything through the rails logger
   config.logger = Rails.logger
+
+  config.api_version = '5.92'
   
   # log requests' URLs
   # config.log_requests = true
